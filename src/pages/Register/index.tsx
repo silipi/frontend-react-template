@@ -4,21 +4,10 @@ import TextField from "@/components/common/TextField";
 import { Link as RouterLink } from "react-router-dom";
 import { Button, Link } from "@chakra-ui/react";
 import { registerSchema } from "./register.schema";
-import { useMutation } from "react-query";
-import API from "@/services/API";
-import useNotify from "@/hooks/useNotify";
+import useRegisterActions from "./useRegisterActions";
 
 const Register = () => {
-  const { notifyError, notifySucess } = useNotify();
-  const { isLoading, mutate } = useMutation(
-    (values) => API.post("/auth/register", values),
-    {
-      onSuccess: () => notifySucess("Registered successfully!"),
-      onError: (error: any) => {
-        notifyError(`Error registering! ${error.response.data.message}.`);
-      },
-    }
-  );
+  const { isLoading, handleSubmit } = useRegisterActions();
 
   return (
     <section className="public-form">
@@ -26,7 +15,7 @@ const Register = () => {
       <h2>🚀 Revolutionize and join the movement!</h2>
 
       <Form
-        onSubmit={(values) => mutate(values)}
+        onSubmit={handleSubmit}
         schema={registerSchema}
         width={{
           base: "100%",

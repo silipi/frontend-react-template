@@ -10,7 +10,9 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <ChakraProvider
         theme={theme}
-        toastOptions={{ defaultOptions: { position: "top-right" } }}
+        toastOptions={{
+          defaultOptions: { position: "top-right", isClosable: true },
+        }}
       >
         <Router />
       </ChakraProvider>

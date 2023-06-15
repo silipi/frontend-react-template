@@ -3,7 +3,7 @@ import { useToast } from "@chakra-ui/react";
 const useNotify = () => {
   const toast = useToast();
 
-  const notifySucess = (message: string) => {
+  const notifySuccess = (message: string) => {
     toast({
       title: message,
       status: "success",
@@ -24,7 +24,7 @@ const useNotify = () => {
     });
   };
 
-  return { notifySucess, notifyError, notifyWarning };
+  return { notifySuccess, notifyError, notifyWarning };
 };
 
 export default useNotify;

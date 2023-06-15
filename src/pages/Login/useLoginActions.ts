@@ -5,7 +5,7 @@ import API from "@/services/API";
 import useNotify from "@/hooks/useNotify";
 
 const useLoginActions = () => {
-  const { notifySucess, notifyError } = useNotify();
+  const { notifySuccess, notifyError } = useNotify();
   const setIsAuthenticated = useAuth((store) => store.setIsAuthenticated);
   const navigate = useNavigate();
   const { isLoading, mutate: handleSubmit } = useMutation(
@@ -15,7 +15,7 @@ const useLoginActions = () => {
     {
       onSuccess: (response) => {
         localStorage.setItem("access_token", response.data.access_token);
-        notifySucess("Login was successfull, enjoy!");
+        notifySuccess("Login was successfull, enjoy!");
         setIsAuthenticated(true);
         navigate("/home");
       },
